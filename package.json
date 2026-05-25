@@ -1,0 +1,7 @@
+{
+  "name": "zd-testimonials-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Serverless endpoints for collecting and serving website testimonials via Airtable."
+}
