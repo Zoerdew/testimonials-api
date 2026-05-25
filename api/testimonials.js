@@ -1,28 +1,9 @@
-// =====================================================================
-//  GET /api/testimonials  -- returns ONLY approved testimonials as JSON
-//  for the public display widget. The API key stays on the server.
-//
-//  Deploy target: Vercel (this file goes at  /api/testimonials.js)
-//
-//  Required environment variables (same project as submit.js):
-//    AIRTABLE_TOKEN   -> your Airtable personal access token
-//    AIRTABLE_BASE    -> appxlO24uZDwlswrq
-//    AIRTABLE_TABLE   -> Testimonials
-//
-//  Optional:
-//    ALLOWED_ORIGIN   -> https://www.zoedew.com
-//
-//  Optional query param:
-//    ?type=Speaking   -> only return that work type
-// =====================================================================
-
 const AIRTABLE_BASE  = process.env.AIRTABLE_BASE  || "appxlO24uZDwlswrq";
 const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || "Testimonials";
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Origin", process.env.ALLOWED_ORIGIN || "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  // browser + CDN cache for 5 min so Airtable isn't hit on every page view
   res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
 
   if (req.method === "OPTIONS") return res.status(204).end();
@@ -34,7 +15,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // optional ?type= filter, on top of the always-on Approved filter
     const wantType = (req.query && req.query.type) ? String(req.query.type) : "";
     let formula = "{Approved}=TRUE()";
     if (wantType) {
@@ -62,16 +42,21 @@ export default async function handler(req, res) {
     }
 
     const data = await r.json();
-    const testimonials = (data.records || []).map((rec) => ({
-      name: rec.fields["Name"] || "",
-      company: rec.fields["Company"] || "",
-      role: rec.fields["Role / Company"] || "",
-      workType: rec.fields["Work Type"] || "",
-      testimonial: rec.fields["Testimonial"] || "",
-      rating: rec.fields["Rating"] || null,
-      photo: rec.fields["Photo URL"] || "",
-      link: rec.fields["Link"] || "",
-    }));
+    const testimonials = (data.records || []).map((rec) => {
+      const f = rec.fields;
+      const quote = (f["Quote final"] || f["Testimonial"] || "").trim();
+      return {
+        name: f["Name"] || "",
+        company: f["Company"] || "",
+        role: f["Role / Company"] || "",
+        workType: f["Work Type"] || "",
+        headline: (f["Headline final"] || "").trim(),
+        quote: quote,
+        rating: f["Rating"] || null,
+        photo: f["Photo URL"] || "",
+        link: f["Link"] || "",
+      };
+    });
 
     return res.status(200).json({ testimonials });
   } catch (err) {
