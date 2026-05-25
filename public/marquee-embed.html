@@ -95,7 +95,14 @@
   </div>
 <script>
 (function () {
-  var FEED_ENDPOINT = "https://testimonials-api.vercel.app/api/testimonials";
+  var API = "https://testimonials-api.vercel.app/api/testimonials";
+
+  var hostParams = new URLSearchParams(window.location.search);
+  var apiParams = new URLSearchParams();
+  if (hostParams.get("type")) apiParams.set("type", hostParams.get("type"));
+  if (hostParams.get("page")) apiParams.set("page", hostParams.get("page"));
+  var FEED_ENDPOINT = API + (apiParams.toString() ? "?" + apiParams.toString() : "");
+
   var track = document.getElementById("zd-track");
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {

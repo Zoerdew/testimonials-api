@@ -1,14 +1,23 @@
+// =====================================================================
+//  POST /api/submit  -- receives a testimonial from the website form
+//  and creates a record in Airtable. The API key never leaves the server.
+//
+//  Deploy target: Vercel (this file goes at  /api/submit.js)
+//
+//  Required environment variables (set in Vercel project settings):
+//    AIRTABLE_TOKEN   -> your Airtable personal access token
+//    AIRTABLE_BASE    -> appxlO24uZDwlswrq
+//    AIRTABLE_TABLE   -> Testimonials
+//
+//  Optional:
+//    ALLOWED_ORIGIN   -> https://www.zoedew.com  (locks CORS to your site)
+// =====================================================================
+
 const AIRTABLE_BASE  = process.env.AIRTABLE_BASE  || "appxlO24uZDwlswrq";
 const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || "Testimonials";
 
-const WORK_TYPES = [
-  "One-to-one",
-  "Training",
-  "Speaking",
-  "100 Reps Club",
-  "Something else",
-];
-
+// Origins allowed to call this API. Covers www and non-www.
+// ALLOWED_ORIGIN env var can be a comma-separated list to override.
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGIN ||
   "https://zoedew.com,https://www.zoedew.com")
   .split(",").map((s) => s.trim());
@@ -46,10 +55,11 @@ export default async function handler(req, res) {
   if (!name || !company || !testimonial || !workType) {
     return res.status(400).json({ error: "Name, company, work type and testimonial are required" });
   }
-  if (!WORK_TYPES.includes(workType)) {
-    return res.status(400).json({ error: "Unknown work type" });
-  }
-  if (name.length > 120 || company.length > 160 || testimonial.length > 4000) {
+  // length guards against junk / abuse. Work type is not checked against a
+  // fixed list: Airtable's typecast creates the option if it's new, so new
+  // categories can be added in Airtable without changing this code.
+  if (name.length > 120 || company.length > 160 ||
+      testimonial.length > 4000 || workType.length > 80) {
     return res.status(400).json({ error: "Submission too long" });
   }
 
@@ -59,7 +69,7 @@ export default async function handler(req, res) {
     "Work Type": workType,
     "Testimonial": testimonial,
     "Submitted": new Date().toISOString(),
-    "Approved": false,
+    "Approved": false, // always starts unapproved; you approve in Airtable
   };
 
   const role = String(body.role || "").trim();
