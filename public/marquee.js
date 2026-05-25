@@ -54,11 +54,15 @@
 
       var tab = t.workType ? '<span class="zd-cardtab">' + esc(t.workType) + '</span>' : '';
 
+      var headline = t.headline
+        ? '  <h3 class="zd-headline">' + esc(t.headline) + '</h3>' : '';
+
       return '' +
         '<div class="zd-card">' +
           tab +
         '  <div class="zd-rating">' + stars + '</div>' +
-        '  <p class="zd-quote">' + esc(t.testimonial) + '</p>' +
+          headline +
+        '  <p class="zd-quote">' + esc(t.quote) + '</p>' +
         '  <div class="zd-person">' +
              avatar +
         '    <div>' +
