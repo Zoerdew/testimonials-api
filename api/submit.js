@@ -1,22 +1,6 @@
-// =====================================================================
-//  POST /api/submit  -- receives a testimonial from the website form
-//  and creates a record in Airtable. The API key never leaves the server.
-//
-//  Deploy target: Vercel (this file goes at  /api/submit.js)
-//
-//  Required environment variables (set in Vercel project settings):
-//    AIRTABLE_TOKEN   -> your Airtable personal access token
-//    AIRTABLE_BASE    -> appxlO24uZDwlswrq
-//    AIRTABLE_TABLE   -> Testimonials
-//
-//  Optional:
-//    ALLOWED_ORIGIN   -> https://www.zoedew.com  (locks CORS to your site)
-// =====================================================================
-
 const AIRTABLE_BASE  = process.env.AIRTABLE_BASE  || "appxlO24uZDwlswrq";
 const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || "Testimonials";
 
-// the valid work types; anything else is rejected
 const WORK_TYPES = [
   "One-to-one",
   "Training",
@@ -25,16 +9,23 @@ const WORK_TYPES = [
   "Something else",
 ];
 
-function corsHeaders() {
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGIN ||
+  "https://zoedew.com,https://www.zoedew.com")
+  .split(",").map((s) => s.trim());
+
+function corsHeaders(req) {
+  const origin = req.headers.origin || "";
+  const allow = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
   return {
-    "Access-Control-Allow-Origin": process.env.ALLOWED_ORIGIN || "*",
+    "Access-Control-Allow-Origin": allow,
+    "Vary": "Origin",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
   };
 }
 
 export default async function handler(req, res) {
-  const headers = corsHeaders();
+  const headers = corsHeaders(req);
   Object.entries(headers).forEach(([k, v]) => res.setHeader(k, v));
 
   if (req.method === "OPTIONS") return res.status(204).end();
@@ -58,7 +49,6 @@ export default async function handler(req, res) {
   if (!WORK_TYPES.includes(workType)) {
     return res.status(400).json({ error: "Unknown work type" });
   }
-  // length guards against junk / abuse
   if (name.length > 120 || company.length > 160 || testimonial.length > 4000) {
     return res.status(400).json({ error: "Submission too long" });
   }
@@ -69,7 +59,7 @@ export default async function handler(req, res) {
     "Work Type": workType,
     "Testimonial": testimonial,
     "Submitted": new Date().toISOString(),
-    "Approved": false, // always starts unapproved; you approve in Airtable
+    "Approved": false,
   };
 
   const role = String(body.role || "").trim();

@@ -1,8 +1,18 @@
 const AIRTABLE_BASE  = process.env.AIRTABLE_BASE  || "appxlO24uZDwlswrq";
 const AIRTABLE_TABLE = process.env.AIRTABLE_TABLE || "Testimonials";
 
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGIN ||
+  "https://zoedew.com,https://www.zoedew.com")
+  .split(",").map((s) => s.trim());
+
+function resolveOrigin(req) {
+  const origin = req.headers.origin || "";
+  return ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+}
+
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", process.env.ALLOWED_ORIGIN || "*");
+  res.setHeader("Access-Control-Allow-Origin", resolveOrigin(req));
+  res.setHeader("Vary", "Origin");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
   res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
 
