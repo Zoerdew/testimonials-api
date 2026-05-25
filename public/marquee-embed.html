@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testimonials</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #fff4fa;
+    --pink: #F11787;
+    --yellow: #FDE047;
+    --ink: #0a0608;
+    --bg: #FFE2F4;
+    --speed: 60s;
+    --card-w: 380px;
+  }
+  html, body {
+    background: transparent;
+    font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+    color: var(--ink);
+    overflow: hidden;
+  }
+  body { padding: 22px 0; }
+  .zd-rail { position: relative; overflow: hidden; padding: 18px 0; }
+  .zd-rail::before, .zd-rail::after {
+    content: ""; position: absolute; top: 0; bottom: 0; width: 70px; z-index: 2; pointer-events: none;
+  }
+  .zd-rail::before { left: 0;  background: linear-gradient(90deg, var(--bg), rgba(255,226,244,0)); }
+  .zd-rail::after  { right: 0; background: linear-gradient(270deg, var(--bg), rgba(255,226,244,0)); }
+  .zd-track {
+    display: flex; gap: 30px; width: max-content; padding: 0 30px;
+    animation: zd-scroll var(--speed) linear infinite;
+  }
+  body:hover .zd-track { animation-play-state: paused; }
+  @keyframes zd-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .zd-track { animation: none; }
+    .zd-rail { overflow-x: auto; }
+  }
+  .zd-card {
+    flex: 0 0 var(--card-w); width: var(--card-w);
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 30px 26px 24px;
+    position: relative;
+    display: flex; flex-direction: column;
+  }
+  .zd-card:nth-child(odd)  { transform: rotate(-1.4deg); }
+  .zd-card:nth-child(even) { transform: rotate(1.1deg); }
+  .zd-cardtab {
+    position: absolute; top: -15px; left: 26px;
+    border: 4px solid var(--ink);
+    padding: 6px 13px;
+    font-weight: 800; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    max-width: 80%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .zd-card:nth-child(odd)  .zd-cardtab { background: var(--yellow); color: var(--ink); }
+  .zd-card:nth-child(even) .zd-cardtab { background: var(--pink);   color: var(--paper); }
+  .zd-rating {
+    color: var(--pink); font-size: 16px; letter-spacing: 2px; margin: 6px 0 10px; min-height: 18px;
+  }
+  .zd-headline {
+    font-weight: 800; font-size: 19px; line-height: 1.15; letter-spacing: -0.01em;
+    margin: 0 0 10px; color: var(--ink);
+  }
+  .zd-quote {
+    font-weight: 500; font-size: 15px; line-height: 1.5; margin: 0 0 18px;
+    display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .zd-person { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .zd-avatar {
+    width: 46px; height: 46px; border-radius: 50%; object-fit: cover;
+    border: 3px solid var(--ink); flex: 0 0 46px; background: var(--bg);
+  }
+  .zd-avatar-fallback {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 3px solid var(--ink); background: var(--pink); color: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 17px; flex: 0 0 46px;
+  }
+  .zd-name { font-weight: 800; font-size: 15px; }
+  .zd-org  { font-weight: 500; font-size: 13px; opacity: 0.72; margin-top: 1px; }
+  @media (max-width: 540px) {
+    :root { --card-w: 290px; }
+  }
+</style>
+</head>
+<body>
+  <div class="zd-rail">
+    <div class="zd-track" id="zd-track" aria-live="off"></div>
+  </div>
+<script>
+(function () {
+  var FEED_ENDPOINT = "https://testimonials-api.vercel.app/api/testimonials";
+  var track = document.getElementById("zd-track");
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function initials(name) {
+    var parts = String(name || "").trim().split(/\s+/).slice(0, 2);
+    return parts.map(function (p) { return p.charAt(0).toUpperCase(); }).join("") || "?";
+  }
+  function cardHTML(t) {
+    var stars = (t.rating >= 1 && t.rating <= 5)
+      ? new Array(Math.round(t.rating) + 1).join("&#9733;") : "";
+    var org = [t.role, t.company].filter(Boolean).join(", ");
+    var avatar = t.photo
+      ? '<img class="zd-avatar" src="' + esc(t.photo) + '" alt="' + esc(t.name) + '" loading="lazy" '
+        + 'onerror="this.outerHTML=\'<div class=&quot;zd-avatar-fallback&quot;>'
+        + esc(initials(t.name)) + '</div>\'">'
+      : '<div class="zd-avatar-fallback">' + esc(initials(t.name)) + '</div>';
+    var tab = t.workType ? '<span class="zd-cardtab">' + esc(t.workType) + '</span>' : '';
+    var headline = t.headline ? '<h3 class="zd-headline">' + esc(t.headline) + '</h3>' : '';
+    return '<div class="zd-card">' + tab +
+      '<div class="zd-rating">' + stars + '</div>' + headline +
+      '<p class="zd-quote">' + esc(t.quote) + '</p>' +
+      '<div class="zd-person">' + avatar +
+      '<div><div class="zd-name">' + esc(t.name) + '</div>' +
+      (org ? '<div class="zd-org">' + esc(org) + '</div>' : '') +
+      '</div></div></div>';
+  }
+  function render(list) {
+    if (!list || !list.length) { document.body.style.display = "none"; return; }
+    var html = list.map(cardHTML).join("");
+    track.innerHTML = html + html;
+    document.documentElement.style.setProperty("--speed", (list.length * 7) + "s");
+  }
+  fetch(FEED_ENDPOINT)
+    .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+    .then(function (data) { render(data && data.testimonials); })
+    .catch(function (err) {
+      console.warn("[marquee] could not load testimonials:", err);
+      document.body.style.display = "none";
+    });
+})();
+</script>
+</body>
+</html>
