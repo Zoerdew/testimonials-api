@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsLeadGenFormEditorMCQMultipleEditsInlineError.react",["AdsErrorUtils","AdsLeadGenFormEditorMCQMultipleEditsAnswerErrorUtils","AdsPathLink","GeoNotice.react","immutable","react","useUniqueID"],(function(t,n,r,o,a,i,l){"use strict";var e,s=e||(e=o("react"));function u(e){var t=e.error,n=e.question,a=r("useUniqueID")();if(t==null)return null;var i=o("AdsLeadGenFormEditorMCQMultipleEditsAnswerErrorUtils").ERROR_PATH.concat(n.id),l=o("AdsErrorUtils").getErrorsForPath([t],i)[0];return l==null?null:s.jsx(o("AdsPathLink").Field,{paths:r("immutable").List([i]),children:s.jsx("div",{className:"x1xmf6yo",children:s.jsx(r("GeoNotice.react"),{id:a,status:"error",children:l.message})})})}u.displayName=u.name+" [from "+i.id+"]",l.default=u}),98);

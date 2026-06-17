@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsUEditorOmnichannelConversionEventFieldUtils",[],(function(t,n,r,o,a,i){"use strict";function e(e){var t,n,r,o=(t=e.promoted_object)==null?void 0:t.omnichannel_object;if(o==null)return!1;var a=(n=o.pixel)==null||(n=n[0])==null?void 0:n.pixel_id,i=(r=o.app)==null||(r=r[0])==null?void 0:r.application_id;return a!=null&&i!=null}function l(e){return!1}i.isValidWebsiteAndAppOmnichannelObject=e,i.isValidWebsiteAndShopOmnichannelObject=l}),66);

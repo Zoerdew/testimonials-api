@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("GenAISpecMigrationGKUtils",["gkx"],(function(t,n,r,o,a,i,l){"use strict";function e(){return r("gkx")("11719")}function s(){return r("gkx")("12320")}function u(){return r("gkx")("10898")}function c(){return r("gkx")("9080")}function d(){return r("gkx")("10678")}l.isMSSOnlyWriteEnabled=e,l.isDualWriteEnabled=s,l.isRemovalDALEnabled=u,l.isMSSReadEnabled=c,l.isDualReadEnabled=d}),98);

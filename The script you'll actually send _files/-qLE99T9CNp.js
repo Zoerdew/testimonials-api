@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("BusinessModalComposerAMEntryPointWrapper.react",["cr:40044","err","react","useGeoEntryPointModalInline"],(function(t,n,r,o,a,i,l){"use strict";var e,s=(e||(e=o("react"))).useEffect;function u(e){var t=e.assets,o=e.onPostsCreated,a=e.showModalRef;if(n("cr:40044")==null)throw r("err")("BusinessModalComposerAMEntryPointWrapper rendered without entry point loaded");var i=r("useGeoEntryPointModalInline")(n("cr:40044"),{onHide:function(){},onPostsCreated:o},{assets:t,routeParams:{ref:"ads_manager_create_post_modal"}}),l=i.modal,u=i.showModal;return s(function(){return a.current=u,function(){a.current=null}},[u,a]),l}l.default=u}),98);

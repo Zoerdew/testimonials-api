@@ -1,0 +1,4 @@
+;/*FB_PKG_DELIM*/
+
+__d("meta-brand-pencil-square-filled-20",["ix","cr:23824","cr:30296","fbicon"],(function(t,n,r,o,a,i,l,s){"use strict";var e=n("cr:23824")!=null?n("cr:23824"):n("cr:30296"),u=e!=null?[e,20]:null,c=u!=null?u:o("fbicon")._(s("507172"),20),d=u!=null?u:o("fbicon")._(s("507172"),20);l.metaBrandPencilSquareComposeFilled20=c,l.metaBrandPencilSquareFilled20=d}),98);
+__d("meta-brand-three-dots-horizontal-filled-20",["ix","cr:39262","cr:39263","fbicon"],(function(t,n,r,o,a,i,l,s){"use strict";var e=n("cr:39262")!=null?n("cr:39262"):n("cr:39263"),u=e!=null?[e,20]:null,c=u!=null?u:o("fbicon")._(s("484387"),20),d=u!=null?u:o("fbicon")._(s("484387"),20),m=u!=null?u:o("fbicon")._(s("591928"),20);l.metaBrandThreeDotsHorizontalDots3HorizontalFilled20=c,l.metaBrandThreeDotsHorizontalFilled20=d,l.metaBrandThreeDotsHorizontalNucleusDots3HorizontalFilled20=m}),98);

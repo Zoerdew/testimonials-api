@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("useAdsUEditorIsFullFunnelBetaEnabled",["AdsAPIObjectives","AdsBulkValueUtils","RelayHooks","react-compiler-runtime","useAdsUEditorIsFullFunnelBetaEnabledFragment.graphql"],(function(t,n,r,o,a,i,l){"use strict";var e,s=e!==void 0?e:e=n("useAdsUEditorIsFullFunnelBetaEnabledFragment.graphql");function u(e){var t=o("react-compiler-runtime").c(4),n=o("RelayHooks").useFragment(s,e),a;t[0]!==n?(a=o("AdsBulkValueUtils").getUniformValueOrDefaultFrom(n,d,null),t[0]=n,t[1]=a):a=t[1];var i=a,l;t[2]!==n?(l=o("AdsBulkValueUtils").getUniformValueOrDefaultFrom(n,c,!1),t[2]=n,t[3]=l):l=t[3];var u=l;return i===r("AdsAPIObjectives").OUTCOME_SALES&&u}function c(e){return e.is_full_funnel}function d(e){return e.objective}l.default=u}),98);

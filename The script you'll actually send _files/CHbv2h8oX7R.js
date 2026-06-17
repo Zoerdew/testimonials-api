@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsUEditorCampaignSetOrganicAdJointOptimizedReducerPlugin",["AdsCampaignRecordAccessors","AdsMutators","AdsUEditorCampaignReducerUtils","AdsUEditorCampaignSetOrganicAdJointOptimizedActionFlux"],(function(t,n,r,o,a,i,l){"use strict";var e={reduce:o("AdsUEditorCampaignReducerUtils").createReducer({},function(e,t){return o("AdsMutators").mutateEach(e,t.campaignIDs,function(e){return r("AdsCampaignRecordAccessors").is_organic_ad_joint_optimized.set(t.shouldOptIn,e)})},o("AdsUEditorCampaignSetOrganicAdJointOptimizedActionFlux").actionType)},s=e;l.default=s}),98);

@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("useCreateMMSubscriberPoolCustomFieldsMutation",["Promise","RelayHooks","react","useCreateMMSubscriberPoolCustomFieldsMutation.graphql"],(function(t,n,r,o,a,i,l){"use strict";var e,s,u,c=(u||(u=o("react"))).useCallback,d=e!==void 0?e:e=n("useCreateMMSubscriberPoolCustomFieldsMutation.graphql");function m(){var e=o("RelayHooks").useMutation(d),t=e[0],r=e[1],a=c(function(e,r,o){return new(s||(s=n("Promise")))(function(n,a){t({variables:{input:{subscriber_pool_id:e,ad_account_id:r,business_id:o}},onCompleted:function(){n()},onError:function(t){a(t)}})})},[t]);return[a,r]}l.default=m}),98);

@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("adsUEditorCanvasIDFromAdgroupSelector",["AdsAdgroupSemanticFields","AdsAssetFeedFieldUtils","AdsCanvasAdUtils","AdsUEditorSelectors","adsCreateSelector","adsGetUniformValueSelector","isAdsCanvasLink"],(function(t,n,r,o,a,i,l){"use strict";var e=r("adsCreateSelector")([r("adsGetUniformValueSelector")(o("AdsUEditorSelectors").adgroup.bulkBySemanticField(r("AdsAdgroupSemanticFields").linkURL.get))],function(t){var e=o("AdsAssetFeedFieldUtils").firstAsset_TALK_WITH_ACE_BEFORE_USE(t,"website_url");return r("isAdsCanvasLink")(e)?o("AdsCanvasAdUtils").getCanvasID(e):null},{name:i.id}),s=e;l.default=s}),98);

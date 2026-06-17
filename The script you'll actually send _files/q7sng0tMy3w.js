@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsLeadGenCentralizedHoldoutGating",["$InternalEnum","AdsInterfacesLogger","gkx","justknobx"],(function(t,n,r,o,a,i,l){"use strict";var e=n("$InternalEnum").Mirrored(["LEAD_ADS_L1_DESTINATION_SECTION","LEAD_ADS_FORM_EDITOR_THANK_YOU_PAGE","WEBSITE_AND_CALLS_UPSELL_INLINE_GUIDANCE","WEBSITE_AND_CALLS_UPSELL_PFR_HUB","WEBSITE_AND_CALLS_UPSELL_DUPLICATION"]);function s(e,t){var n;return t===void 0&&(t=!1),r("AdsInterfacesLogger").log({eventName:"lg_2026_h1_train2_centralized_holdout_exposure",data:(n={},n.message=e,n.is_enabled=!t,n)}),r("justknobx")._("2991")?t===!0?r("gkx")("4117"):r("gkx")("4367"):!1}l.LeadGenCentralizedHoldoutExposureLocation=e,l.isInLeadGenCentralizedHoldout2026H1Train2=s}),98);

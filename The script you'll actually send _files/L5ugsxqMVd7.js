@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("meta-brand-shopping-bag-filled-24",["ix","cr:31183","cr:9319","fbicon"],(function(t,n,r,o,a,i,l,s){"use strict";var e=n("cr:9319")!=null?n("cr:9319"):n("cr:31183"),u=e!=null?[e,24]:null,c=u!=null?u:o("fbicon")._(s("556468"),24),d=u!=null?u:o("fbicon")._(s("556468"),24),m=u!=null?u:o("fbicon")._(s("936310"),24),p=u!=null?u:o("fbicon")._(s("1664046"),24);l.metaBrandShoppingBagShoppingBagFilled24=c,l.metaBrandShoppingBagFilled24=d,l.metaBrandShoppingBagShoppingBagFlaredFilled24=m,l.metaBrandShoppingBagShopsFilled24=p}),98);

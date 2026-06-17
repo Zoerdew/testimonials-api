@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("useMAIBAActionListener",["MAIBAActionRegistryContext","react","react-compiler-runtime"],(function(t,n,r,o,a,i,l){"use strict";var e,s=e||(e=o("react")),u=s.useContext,c=s.useEffect;function d(e,t){var n=o("react-compiler-runtime").c(5),a=u(r("MAIBAActionRegistryContext")),i,l;n[0]!==e||n[1]!==t||n[2]!==a?(i=function(){if(a!=null)return a(e,t)},l=[a,e,t],n[0]=e,n[1]=t,n[2]=a,n[3]=i,n[4]=l):(i=n[3],l=n[4]),c(i,l)}l.default=d}),98);

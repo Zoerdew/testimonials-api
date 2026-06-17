@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsWebsiteAndCallsFeatureGating",["AdsLeadGenCentralizedHoldoutGating","gkx"],(function(t,n,r,o,a,i,l){"use strict";function e(e){return u()?!1:r("gkx")("11835")===!0||r("gkx")("11442")===!0&&o("AdsLeadGenCentralizedHoldoutGating").isInLeadGenCentralizedHoldout2026H1Train2(e)}function s(){return r("gkx")("20294")===!0}function u(){return r("gkx")("1769")===!0}l.showWebsiteAndCallsPFRUpsell=e,l.showWebsiteAndCallsAdvertiserEducation=s,l.isInWebsiteAndCallsGrowthHoldout=u}),98);

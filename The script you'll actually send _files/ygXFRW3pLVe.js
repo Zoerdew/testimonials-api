@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsPECrepeAdgroupReviewViewContainerFragment.graphql",[],(function(t,n,r,o,a,i){"use strict";var e={argumentDefinitions:[],kind:"Fragment",metadata:{plural:!0,throwOnFieldError:!0},name:"AdsPECrepeAdgroupReviewViewContainerFragment",selections:[{args:null,kind:"FragmentSpread",name:"useAdsPEAdgroupFragmentIDRelaySelector_fragment"},{args:null,kind:"FragmentSpread",name:"useAdsUEditorAdgroupIsNewRelaySelector_fragment"}],type:"CombinedAdgroup",abstractKey:null};a.exports=e}),null);

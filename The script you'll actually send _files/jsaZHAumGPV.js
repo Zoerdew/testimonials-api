@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsUEditorCampaignDeliveryChangeOptimizedEventAction",["AdsCFCampaignProvider","AdsUEditorCampaignDeliveryChangeOptimizedEventReducerPlugin","Laminar"],(function(t,n,r,o,a,i){"use strict";var e=n("Laminar").__createAction(function(){return[n("Laminar").__createReducer(n("AdsUEditorCampaignDeliveryChangeOptimizedEventReducerPlugin"),n("AdsCFCampaignProvider"),{},"")]},function(){return[]},"ADS_INSTALL_CAMPAIGN_EDITOR_DELIVERY_CHANGE_OPTIMIZED_EVENT_TYPE");a.exports=e}),null);

@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsAdaptiveGeoExclusionQEUtils",["TargetingGuidanceCardFramework","justknobx","qex"],(function(t,n,r,o,a,i,l){"use strict";var e="adaptiveGeoExclusionDisclosureCard";function s(){return r("justknobx")._("2469")}function u(){return r("qex")._("2729")===!0}function c(){var t=r("TargetingGuidanceCardFramework").guidance_card_list;for(var n of Object.keys(t))for(var o of t[n])if(o.key===e){var a=o.attributes;if(a!=null&&typeof a=="object"){var i=a.active_until_ts;if(typeof i=="number"&&i>0)return Date.now()/1e3<i}}return!0}l.isAdaptiveGeoExclusionGuidanceCardEnabled=s,l.isInAdaptiveGeoExclusionTreatmentSilent=u,l.isWithinAdaptiveGeoExclusionActiveWindow=c}),98);

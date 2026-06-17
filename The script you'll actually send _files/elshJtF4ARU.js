@@ -1,0 +1,4 @@
+;/*FB_PKG_DELIM*/
+
+__d("AdsUEditorCampaignDeliveryChangeBidStrategyAction",["AdsCFCampaignProvider","AdsUEditorCampaignDeliveryChangeBidStrategyReducerPlugin","Laminar"],(function(t,n,r,o,a,i){"use strict";var e=n("Laminar").__createAction(function(){return[n("Laminar").__createReducer(n("AdsUEditorCampaignDeliveryChangeBidStrategyReducerPlugin"),n("AdsCFCampaignProvider"),{},"")]},function(){return[]},"ADS_CAMPAIGN_EDITOR_DELIVERY_CHANGE_BID_STRATEGY");a.exports=e}),null);
+__d("Query-override_hec-resolver",[],(function(t,n,r,o,a,i){"use strict";function e(){return{id:"ClientSAFR"}}i.override_hec=e}),66);

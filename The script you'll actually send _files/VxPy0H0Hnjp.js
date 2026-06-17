@@ -1,0 +1,3 @@
+;/*FB_PKG_DELIM*/
+
+__d("shouldDisableSingleHeaderFormatSelectorUtils",["AdsAPIOptimizationGoals","AdsLinkTypeUtils","AdsUEditorMessagingDestinationUtils"],(function(t,n,r,o,a,i,l){"use strict";function e(e,t,n){var a=o("AdsUEditorMessagingDestinationUtils").isClickToMessageAdDestination(e)||o("AdsLinkTypeUtils").isMessagingDestination(t),i=n===r("AdsAPIOptimizationGoals").LEAD_GENERATION,l=n===r("AdsAPIOptimizationGoals").PROFILE_VISIT;return a||i||l}l.shouldDisableSingleHeaderFormat=e}),98);
